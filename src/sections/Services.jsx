@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ServiceCard from '../components/ServiceCard.jsx'
 import { TaxPlanningIcon, FinancialAnalysisIcon, BookkeepingIcon, AuditServicesIcon, PayrollManagementIcon, ConsultingIcon } from '../components/Icons.jsx'
 import { useScrollAnimation } from '../hooks/useScrollAnimation.js'
@@ -74,9 +74,44 @@ const Services = () => {
         </div>
         <div className="md:hidden">
           <div className="services-container" style={{ marginLeft: '-1rem', marginRight: '-1rem', padding: 0, overflow: 'visible', width: 'calc(100% + 2rem)' }}>
-            <div ref={carouselRef} className="services-carousel" style={{ display: 'flex', gap: '1rem', overflowX: 'auto', overflowY: 'hidden', scrollSnapType: 'x mandatory', scrollPadding: 0, WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none', padding: '1rem 0', margin: 0, paddingLeft: '1.5rem', paddingRight: '1.5rem' }}>
+            <div
+              ref={carouselRef}
+              className="services-carousel"
+              style={{
+                '--mobile-slide-width': 'min(340px, calc(100vw - 2rem))',
+                '--mobile-slide-height': '380px',
+                display: 'flex',
+                gap: '1rem',
+                overflowX: 'auto',
+                overflowY: 'hidden',
+                scrollSnapType: 'x mandatory',
+                scrollPadding: 0,
+                WebkitOverflowScrolling: 'touch',
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                padding: '1rem 0',
+                margin: 0,
+                paddingLeft: '1.5rem',
+                paddingRight: '1.5rem',
+              }}
+            >
               {services.map((service, index) => (
-                <div key={index} className="service-card-wrapper" style={{ flex: '0 0 calc(100vw - 4rem)', width: 'calc(100vw - 4rem)', minWidth: 'calc(100vw - 4rem)', maxWidth: 'calc(100vw - 4rem)', scrollSnapAlign: 'center', scrollSnapStop: 'always', height: '100%' }}>
+                <div
+                  key={index}
+                  className="service-card-wrapper"
+                  style={{
+                    flex: '0 0 var(--mobile-slide-width)',
+                    width: 'var(--mobile-slide-width)',
+                    minWidth: 'var(--mobile-slide-width)',
+                    maxWidth: 'var(--mobile-slide-width)',
+                    height: 'var(--mobile-slide-height)',
+                    minHeight: 'var(--mobile-slide-height)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    scrollSnapAlign: 'center',
+                    scrollSnapStop: 'always',
+                  }}
+                >
                   <ServiceCard {...service} />
                 </div>
               ))}
